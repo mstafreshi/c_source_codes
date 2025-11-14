@@ -43,3 +43,36 @@ mh_bubble_sort(int numbers[], int n)
         }
     }
 }
+
+/* mh_quick_sort: sort an integer array with quick sort algorithm. */
+void
+mh_quick_sort(int numbers[], int low, int high)
+{
+    int i, j, pivot;
+    
+    pivot = high;
+    i = low;
+    j = high - 1;
+    
+    if (low >= high)
+        return;
+    
+    while (1) {
+        for ( ; i < high; i++)
+            if (numbers[i] >= numbers[pivot])
+                break;
+            
+        for ( ; j >= low; j--)
+            if (numbers[j] < numbers[pivot])
+                break;
+
+        if (i < j)
+            mh_swap(numbers, i, j);
+        else {
+            mh_swap(numbers, i, pivot);
+            break;
+        }
+    }
+    mh_quick_sort(numbers, low, i - 1);
+    mh_quick_sort(numbers, i + 1, high);
+}
