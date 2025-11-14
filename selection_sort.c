@@ -17,12 +17,12 @@ main()
         numbers[i] = rand() % 10000;
         to_be_sorted[i] = numbers[i];
     }
-    
+
     mh_selection_sort(to_be_sorted, ARRAY_LENGTH);
     
     printf("%8s %8s\n", "numbers", "sorted");
     for (i = 0; i < ARRAY_LENGTH; i++)
         printf("%8d %8d\n", numbers[i], to_be_sorted[i]);
-    
+
     return 0;
 }

@@ -29,3 +29,17 @@ mh_swap(int numbers[], int i, int j)
     numbers[i] = numbers[j];
     numbers[j] = temp;
 }
+
+/* mh_bubble_sort: sort an integer array with bubble sort algorithm. */
+void
+mh_bubble_sort(int numbers[], int n)
+{
+    int i, j;
+    
+    for (i = n - 1; i >= 0; i--) {
+        for (j = 0; j < i; j++) {
+            if (numbers[j] > numbers[j + 1])
+                mh_swap(numbers, j, j + 1);
+        }
+    }
+}
