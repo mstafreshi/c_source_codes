@@ -161,3 +161,106 @@ mh_rtrim(char *s)
         s[n] = '\0';
     return s;
 }
+
+/*
+ * mh_chop: perl like chop function.
+ * return and remove last character of string
+ */
+int
+mh_chop(char *s)
+{
+    int i;
+    int temp = '\0';
+    
+    for (i = 0; s[i] != '\0'; i++)
+        ;
+    if (i) {
+        temp = s[i - 1];
+        s[i - 1] = '\0';
+    }
+    return temp;
+}
+
+/*
+ * mh_uc: convert string to upper case.
+ */
+char *
+mh_uc(char *s)
+{
+    int i;
+    
+    for (i = 0; s[i] != '\0'; i++)
+        s[i] = toupper(s[i]);
+    return s;
+}
+
+/*
+ * mh_lc: convert string to lower case.
+ */
+char *
+mh_lc(char *s)
+{
+    int i;
+    
+    for (i = 0; s[i] != '\0'; i++)
+        s[i] = tolower(s[i]);
+    return s;
+}
+
+/*
+ * mh_lcfirst: convert first char of string to lower case.
+ */
+char *
+mh_lcfirst(char *s)
+{
+    if (s[0] != '\0')
+        s[0] = tolower(s[0]);
+    return s;
+}
+
+/*
+ * mh_ucfirst: convert first char of string to upper case.
+ */
+char *
+mh_ucfirst(char *s)
+{
+    if (s[0] != '\0')
+        s[0] = toupper(s[0]);
+    return s;
+}
+
+/*
+ * mh_substr.
+ * 
+ * result will be placed in p that must be big enough.
+ */
+char *
+mh_substr(char *s, int start, int length, char *p)
+{
+    int i;
+    int j;
+    
+    if (start < 0)
+        start = strlen(s) + start;
+    if (length <= 0) {
+        p[0] = '\0';
+        return p;
+    }
+    for (i = start, j = 0; i < start + length; )
+        p[j++] = s[i++];
+    p[j] = '\0';
+    return p;
+}
+
+char *
+mh_reverse(char *s)
+{
+    int i, j, temp;
+    
+    for (i = 0, j = strlen(s) - 1; i < j; i++, j--) {
+        temp = s[i];
+        s[i] = s[j];
+        s[j] = temp;
+    }
+    return s;
+}

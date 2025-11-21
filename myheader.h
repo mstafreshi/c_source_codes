@@ -13,4 +13,12 @@ char *mh_tobin(long int n, char *s, int l);  /* l = s array length */
 char *mh_trim(char *s, int flags);
 char *mh_rtrim(char *s);
 char *mh_ltrim(char *s);
+int mh_chop(char *s);
+char *mh_uc(char *s);
+char *mh_lc(char *s);
+char *mh_lcfirst(char *s);
+char *mh_ucfirst(char *s);
+char *mh_substr(char *source, int start, int length, char *destination);
+char *mh_reverse(char *s);
+
 #endif
