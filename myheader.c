@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include "myheader.h"
 
 /* 
@@ -115,4 +116,48 @@ mh_tobin(long int n, char *s, int l)
             return &s[i];
         
     return j - 1 >= 0 ? &s[j - 1] : NULL;   /* just 0 can reach here */
+}
+
+/* mh_trim: trim a string based on flag */
+char *
+mh_trim(char *s, int flags)
+{
+    if (flags & MH_TRIM_BOTH)
+        flags = ~MH_TRIM_BOTH | MH_TRIM_LEFT | MH_TRIM_RIGHT;
+    
+    if (flags & MH_TRIM_LEFT)
+        mh_ltrim(s);
+    if (flags & MH_TRIM_RIGHT)
+        mh_rtrim(s);
+    return s;
+}
+
+char *
+mh_ltrim(char *s)
+{
+    char *p;
+    
+    p = s;
+    while (isspace(*p))
+        p++;
+    if (p != s)
+        memmove(s, p, strlen(p) + 1);       /* first use of memmove! */
+    return s;
+}
+
+char *
+mh_rtrim(char *s)
+{
+    int i, n;
+    
+    n = -1;
+    for (i = 0; s[i] != '\0'; i++)
+        if (! isspace(s[i]))
+            n = -1;
+        else if (n == -1)
+            n = i;
+    
+    if (n != -1)
+        s[n] = '\0';
+    return s;
 }
